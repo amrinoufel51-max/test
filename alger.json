@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Sos pizza",
+        "profileImg": "images/menus/pp sos pizza",
+        "phone": "0768465386",
+        "menuImages": [
+            "images/menus/sos_pizza",
+            "images/menus/sos_pizza2",
+            "images/menus/sos_pizza3",
+            "images/menus/sos_pizza4"
+        ]
+    }
+]
