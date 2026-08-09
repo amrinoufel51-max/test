@@ -41,7 +41,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* حاوية الخلفية المتطورة (UI/UX Backdrop) */
         .backdrop-fx {
             position: fixed;
             top: 0; left: 0;
@@ -51,7 +50,6 @@
             overflow: hidden;
         }
 
-        /* شبكة الإضاءة الجمالية الخفيفة */
         .glow-mesh {
             position: absolute;
             width: 100%; height: 100%;
@@ -66,7 +64,6 @@
         .particle { position: absolute; background: #ffffff; border-radius: 50%; opacity: 0.2; animation: floatParticle linear infinite; }
         @keyframes floatParticle { 0% { transform: translateY(100vh) scale(0); } 50% { opacity: 0.5; } 100% { transform: translateY(-50px) scale(1); opacity: 0; } }
 
-        /* فقاعات الخلفية الجمالية الجديدة (Bubbles) */
         .bubble {
             position: absolute;
             bottom: -100px;
@@ -109,7 +106,6 @@
             gap: 8px;
         }
 
-        /* أنيميشن تكرار الهبوط حرف بحرف (مرتين) */
         .site-title span {
             display: inline-block;
             opacity: 0;
@@ -190,13 +186,30 @@
             box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
         }
 
-        .profile-img {
+        /* حاوية الصورة الجديدة لتناسب كل الأبعاد بدون قص */
+        .profile-img-wrapper {
             width: 100%;
             height: 240px;
             border-radius: 14px;
-            object-fit: cover;
+            overflow: hidden;
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(59, 130, 246, 0.3);
             margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* تظهر الصورة كاملة مهما كانت أبعادها دون أي قص */
+            transition: transform 0.3s ease;
+        }
+
+        .restaurant-card:hover .profile-img {
+            transform: scale(1.03);
         }
 
         .restaurant-info h3 { margin: 0 0 8px 0; font-size: 24px; color: #ffffff; }
@@ -317,7 +330,6 @@
 
 <div id="loader"></div>
 
-<!-- الخلفية المطورة: التموجات، النقاط، شبكة الإضاءة، والفقاعات الجمالية -->
 <div class="backdrop-fx">
     <div class="glow-mesh"></div>
     <div id="particles-js"></div>
@@ -455,7 +467,9 @@
             card.className = "restaurant-card";
             
             card.innerHTML = `
-                <img src="${rest.profileImg}" alt="${rest.name}" class="profile-img" loading="lazy">
+                <div class="profile-img-wrapper">
+                    <img src="${rest.profileImg}" alt="${rest.name}" class="profile-img" loading="lazy">
+                </div>
                 <div class="restaurant-info">
                     <h3>${rest.name}</h3>
                     <p>📍 ${wilayaName.toUpperCase()} — 📞 ${rest.phone}</p>
