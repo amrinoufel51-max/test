@@ -186,7 +186,6 @@
             box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
         }
 
-        /* حاوية الصورة تتكيف ديناميكياً حسب أبعاد الصورة الأصلية */
         .profile-img-wrapper {
             width: 100%;
             border-radius: 14px;
@@ -201,7 +200,7 @@
 
         .profile-img {
             width: 100%;
-            height: auto; /* الصورة تتحكم في الطول والارتفاع تلقائياً حسب أبعادها */
+            height: auto;
             display: block;
             object-fit: contain;
             transition: transform 0.3s ease;
@@ -305,23 +304,6 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             display: block;
         }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: #10b981;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            margin-top: 8px;
-            transition: background 0.2s;
-        }
-        .download-btn:hover { background: #059669; }
 
         .no-result { text-align: center; color: #94a3b8; font-size: 16px; margin-top: 30px; font-weight: 500; }
     </style>
@@ -508,27 +490,12 @@
         if (images.length === 0) {
             galleryContainer.innerHTML = "<p style='color: #94a3b8;'>Aucun menu disponible pour le moment.</p>";
         } else {
-            images.forEach((imgSrc, index) => {
-                let wrapper = document.createElement("div");
-                wrapper.style.width = "100%";
-                wrapper.style.display = "flex";
-                wrapper.style.flexDirection = "column";
-                wrapper.style.alignItems.center;
-
+            images.forEach((imgSrc) => {
                 let img = document.createElement("img");
                 img.src = imgSrc;
                 img.className = "hd-menu-img";
-                img.alt = `Menu ${index + 1}`;
-
-                let downloadBtn = document.createElement("a");
-                downloadBtn.href = imgSrc;
-                downloadBtn.download = `${rest.name}_menu_${index + 1}.jpg`;
-                downloadBtn.className = "download-btn";
-                downloadBtn.innerHTML = `⬇️ Télécharger le Menu ${index + 1}`;
-
-                wrapper.appendChild(img);
-                wrapper.appendChild(downloadBtn);
-                galleryContainer.appendChild(wrapper);
+                img.alt = "Menu Image";
+                galleryContainer.appendChild(img);
             });
         }
 
