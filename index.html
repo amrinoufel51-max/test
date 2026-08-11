@@ -83,6 +83,133 @@
 
         #loader { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #3b82f6, #ec4899); width: 0%; transition: width 0.3s ease-in-out; z-index: 9999; }
 
+        .top-bar {
+            max-width: 650px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .menu-toggle-btn {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #ffffff;
+            font-size: 22px;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(12px);
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-toggle-btn:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0; left: -300px;
+            width: 280px; height: 100%;
+            background: #0f172a;
+            border-right: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.8);
+            z-index: 2001;
+            display: flex;
+            flex-direction: column;
+            padding: 25px 20px;
+            transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .sidebar-title {
+            font-size: 22px;
+            font-weight: 900;
+            background: linear-gradient(to right, #fff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .sidebar-close-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: white;
+            font-size: 18px;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .sidebar-close-btn:hover { background: rgba(255, 255, 255, 0.15); }
+
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .sidebar-link-item {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            color: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-link-item:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+            transform: translateX(5px);
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            padding-top: 15px;
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+        }
+
         .container { 
             max-width: 650px; 
             margin: auto; 
@@ -90,7 +217,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 80vh;
+            min-height: 75vh;
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -144,6 +271,7 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInSearch 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+            margin-bottom: 15px;
         }
 
         @keyframes fadeInSearch { to { opacity: 1; transform: translateY(0); } }
@@ -159,12 +287,37 @@
         }
         .search-box-wrapper input::placeholder { color: #94a3b8; }
 
+        /* خانة البحث عن اسم المطعم الإضافية (تظهر تلقائياً بعد جلب مطاعم الولاية) */
+        #restaurantSearchWrapper {
+            display: none;
+            width: 100%;
+            max-width: 650px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 14px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            align-items: center;
+            border: 1px solid rgba(236, 72, 153, 0.4);
+            margin-bottom: 25px;
+        }
+
+        #restaurantSearchWrapper input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 17px;
+            background: transparent;
+            text-align: left;
+            color: #ffffff;
+        }
+        #restaurantSearchWrapper input::placeholder { color: #cbd5e1; }
+
         .grid-container {
             display: flex;
             flex-direction: column;
             gap: 25px;
             width: 100%;
-            margin-top: 35px;
         }
 
         .restaurant-card { 
@@ -262,7 +415,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            z-index: 3000;
             justify-content: center; align-items: center;
             padding: 20px;
         }
@@ -318,6 +471,26 @@
     <div id="bubbles-container"></div>
 </div>
 
+<div class="top-bar">
+    <button class="menu-toggle-btn" onclick="toggleSidebar()">☰</button>
+</div>
+
+<div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h3 class="sidebar-title">BITE</h3>
+        <button class="sidebar-close-btn" onclick="toggleSidebar()">×</button>
+    </div>
+    <div class="sidebar-links">
+        <a class="sidebar-link-item" onclick="openLegalModal('about'); toggleSidebar();">ℹ️ About Us</a>
+        <a class="sidebar-link-item" onclick="openLegalModal('privacy'); toggleSidebar();">🔒 Privacy Policy</a>
+        <a class="sidebar-link-item" onclick="openLegalModal('contact'); toggleSidebar();">📞 Contact Us</a>
+    </div>
+    <div class="sidebar-footer">
+        &copy; 2026 BITE. Tous droits réservés.
+    </div>
+</div>
+
 <div class="container" id="mainContainer">
     <div class="title-wrapper">
         <div class="site-title">
@@ -325,9 +498,16 @@
         </div>
     </div>
 
+    <!-- خانة الولاية (إجبارية للبدء) -->
     <div class="search-box-wrapper">
-        <span style="margin-right: 10px; font-size: 20px;">🔍</span>
+        <span style="margin-right: 10px; font-size: 20px;">📍</span>
         <input type="text" id="wilayaInput" placeholder="Entrez votre Wilaya (ex: se, alger)..." oninput="searchRestaurants()">
+    </div>
+
+    <!-- خانة البحث عن اسم المطعم الإضافية (تظهر تلقائياً كخيار لتسهيل البحث) -->
+    <div id="restaurantSearchWrapper">
+        <span style="margin-right: 10px; font-size: 20px;">🍽️</span>
+        <input type="text" id="restaurantNameInput" placeholder="Rechercher par nom de restaurant (optionnel)..." oninput="filterByRestaurantName()">
     </div>
 
     <div id="resultsContainer" class="grid-container"></div>
@@ -354,8 +534,10 @@
     ];
 
     let allRestaurants = [];
+    let filteredRestaurants = [];
     let displayedCount = 0;
     const batchSize = 10;
+    let currentMatchedWilaya = "";
 
     function createParticles() {
         const container = document.getElementById("particles-js");
@@ -388,6 +570,19 @@
     createParticles();
     createBubbles();
 
+    function toggleSidebar() {
+        let sidebar = document.getElementById("sidebar");
+        let overlay = document.getElementById("sidebarOverlay");
+        
+        if (sidebar.classList.contains("active")) {
+            sidebar.classList.remove("active");
+            overlay.style.display = "none";
+        } else {
+            sidebar.classList.add("active");
+            overlay.style.display = "block";
+        }
+    }
+
     async function searchRestaurants() {
         let loader = document.getElementById("loader");
         loader.style.width = "100%";
@@ -397,15 +592,20 @@
 
         let container = document.getElementById("resultsContainer");
         let mainContainer = document.getElementById("mainContainer");
+        let restaurantSearchWrapper = document.getElementById("restaurantSearchWrapper");
         
         container.innerHTML = "";
         allRestaurants = [];
+        filteredRestaurants = [];
         displayedCount = 0;
+        currentMatchedWilaya = "";
+        restaurantSearchWrapper.style.display = "none";
+        document.getElementById("restaurantNameInput").value = "";
 
         if (query === "") {
             loader.style.width = "0%";
             mainContainer.style.justifyContent = "center";
-            mainContainer.style.minHeight = "80vh";
+            mainContainer.style.minHeight = "75vh";
             return;
         }
 
@@ -420,19 +620,40 @@
             return;
         }
 
+        currentMatchedWilaya = matchedWilaya;
+
         try {
-            let response = await fetch(`${matchedWilaya}.json`);
-            
-            if (!response.ok) {
+            let partIndex = 1;
+            let combinedData = [];
+
+            while (true) {
+                let fileName = partIndex === 1 ? `${matchedWilaya}.json` : `${matchedWilaya}_${partIndex}.json`;
+                try {
+                    let response = await fetch(fileName);
+                    if (!response.ok) break;
+                    let data = await response.json();
+                    combinedData = combinedData.concat(data);
+                    partIndex++;
+                } catch (e) {
+                    break;
+                }
+            }
+
+            if (combinedData.length === 0) {
                 loader.style.width = "0%";
                 container.innerHTML = `<p class='no-result'>Aucun restaurant pour ${matchedWilaya.toUpperCase()} pour le moment.</p>`;
                 return;
             }
 
-            allRestaurants = await response.json();
+            // بمجرد جلب البيانات، يتم حفظها وتظهر كل المطاعم مباشرة
+            allRestaurants = combinedData;
+            filteredRestaurants = combinedData;
             loader.style.width = "0%";
 
-            renderMoreRestaurants(matchedWilaya);
+            // إظهار خانة اسم المطعم كأداة بحث اختيارية إضافية
+            restaurantSearchWrapper.style.display = "flex";
+
+            renderMoreRestaurants();
 
         } catch (error) {
             loader.style.width = "0%";
@@ -440,9 +661,31 @@
         }
     }
 
-    function renderMoreRestaurants(wilayaName) {
+    // فلترة اختيارية بالاسم إذا كتب المستخدم شيئاً في خانة اسم المطعم
+    function filterByRestaurantName() {
+        let nameQuery = document.getElementById("restaurantNameInput").value.trim().toLowerCase();
         let container = document.getElementById("resultsContainer");
-        let nextBatch = allRestaurants.slice(displayedCount, displayedCount + batchSize);
+        
+        container.innerHTML = "";
+        displayedCount = 0;
+
+        if (nameQuery === "") {
+            filteredRestaurants = allRestaurants;
+        } else {
+            filteredRestaurants = allRestaurants.filter(rest => rest.name.toLowerCase().includes(nameQuery));
+        }
+
+        if (filteredRestaurants.length === 0) {
+            container.innerHTML = "<p class='no-result'>Aucun restaurant trouvé avec ce nom...</p>";
+            return;
+        }
+
+        renderMoreRestaurants();
+    }
+
+    function renderMoreRestaurants() {
+        let container = document.getElementById("resultsContainer");
+        let nextBatch = filteredRestaurants.slice(displayedCount, displayedCount + batchSize);
 
         nextBatch.forEach((rest) => {
             let card = document.createElement("div");
@@ -454,7 +697,7 @@
                 </div>
                 <div class="restaurant-info">
                     <h3>${rest.name}</h3>
-                    <p>📍 ${wilayaName.toUpperCase()} — 📞 ${rest.phone}</p>
+                    <p>📍 ${currentMatchedWilaya.toUpperCase()} — 📞 ${rest.phone}</p>
                     <div class="card-actions">
                         <button class="menu-trigger-btn" onclick='openModal(${JSON.stringify(rest).replace(/'/g, "&#39;")})'>Menu</button>
                         <a href="tel:${rest.phone}" class="phone-action-btn">📞 Appeler</a>
@@ -470,12 +713,8 @@
 
     window.addEventListener("scroll", () => {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
-            let query = document.getElementById("wilayaInput").value.trim().toLowerCase();
-            let formattedQuery = query.replace(/\s+/g, "_");
-            let matchedWilaya = wilayasList.find(w => w.startsWith(formattedQuery) || w.includes(formattedQuery));
-            
-            if (matchedWilaya && displayedCount < allRestaurants.length) {
-                renderMoreRestaurants(matchedWilaya);
+            if (displayedCount < filteredRestaurants.length) {
+                renderMoreRestaurants();
             }
         }
     });
@@ -495,6 +734,7 @@
                 img.src = imgSrc;
                 img.className = "hd-menu-img";
                 img.alt = "Menu Image";
+                img.loading = "lazy";
                 galleryContainer.appendChild(img);
             });
         }
@@ -510,6 +750,40 @@
         let modalContent = document.querySelector(".modal-content");
         if (!modalContent.contains(event.target)) {
             closeModal();
+        }
+    }
+
+    function openLegalModal(type) {
+        let modalName = document.getElementById("modalName");
+        let galleryContainer = document.getElementById("menuGallery");
+        
+        document.getElementById("restaurantModal").style.display = "flex";
+        
+        if (type === 'about') {
+            modalName.innerText = "À propos de BITE";
+            galleryContainer.innerHTML = `
+                <p style="color: #94a3b8; line-height: 1.6; text-align: left;">
+                    <strong>BITE</strong> est votre annuaire numérique de référence pour découvrir les meilleurs restaurants à travers toutes les wilayas d'Algérie. Notre mission est de simplifier l'accès aux menus et aux informations des restaurants de manière rapide, fluide et élégante.
+                </p>
+            `;
+        } else if (type === 'privacy') {
+            modalName.innerText = "Politique de Confidentialité";
+            galleryContainer.innerHTML = `
+                <p style="color: #94a3b8; line-height: 1.6; text-align: left;">
+                    Chez <strong>BITE</strong>, nous respectons votre vie privée. Aucune donnée personnelle sensible n'est collectée lors de votre navigation sur notre annuaire. Les recherches sont traitées localement pour garantir une sécurité totale.
+                </p>
+            `;
+        } else if (type === 'contact') {
+            modalName.innerText = "Contactez-nous";
+            galleryContainer.innerHTML = `
+                <p style="color: #94a3b8; line-height: 1.6; text-align: left;">
+                    Vous êtes propriétaire d'un restaurant ou vous souhaitez nous contacter ? N'hésitez pas à nous joindre via les coordonnées ci-dessous :
+                </p>
+                <p style="color: #ffffff; text-align: left; margin-top: 15px;">
+                    📧 Email : <a href="mailto:amrinoufel51@gmail.com" style="color: #3b82f6;">amrinoufel51@gmail.com</a><br><br>
+                    📞 Téléphone : <a href="tel:0549770854" style="color: #3b82f6;">0549770854</a>
+                </p>
+            `;
         }
     }
 </script>
