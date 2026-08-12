@@ -53,5 +53,14 @@
             "images/constantine/02E658F3-18D9-4613-A74F-B863C9983A09.jpeg",
             "images/constantine/5A8AEE09-57E6-4373-8B07-9DD37F0B776D.jpeg"
         ]
+    },
+    {
+        "name": "iskandarani",
+        "profileImg": "images/constantine/859E3262-E2FA-46F9-A6F7-B5F2B740280F.jpeg",
+        "phone": "0551619030",
+        "menuImages": [
+            "images/constantine/B5EF8D90-8C42-432C-9E8C-A043A56E1B57.jpeg",
+            "images/constantine/E607FD59-67DC-4EEB-A818-C96E5E504B02.jpeg"
+        ]
     }
 ]
