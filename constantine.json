@@ -146,5 +146,27 @@
             "images/constantine/9E478F09-6DB0-4BAC-A845-C6359F1CAF82.jpeg",
             "images/constantine/7D11ABDB-F2C1-44D5-9644-73789E3B12DF.jpeg"
         ]
+    },
+    {
+        "name": "Nexo Pizza",
+        "profileImg": "images/constantine/Nexo pp.JPG",
+        "phone": "0660205611",
+        "menuImages": [
+            "images/constantine/Nexo m1.jpg",
+            "images/constantine/Nexo m2.jpg",
+            "images/constantine/Nexo m3.jpg",
+            "images/constantine/Nexo m4.jpg",
+            "images/constantine/Nexo m5.jpg",
+            "images/constantine/Nexo m6.jpg",
+            "images/constantine/Nexo m7.jpg",
+            "images/constantine/Nexo m8.jpg",
+            "images/constantine/Nexo m9.jpg",
+            "images/constantine/Nexo m10.jpg",
+            "images/constantine/Nexo m12.jpg",
+            "images/constantine/Nexo m13.jpg",
+            "images/constantine/Nexo m14.jpg",
+            "images/constantine/Nexo m15.jpg",
+            "images/constantine/Nexo m16.jpg"
+        ]
     }
 ]
