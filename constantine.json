@@ -168,5 +168,15 @@
             "images/constantine/Nexo m15.jpg",
             "images/constantine/Nexo m16.jpg"
         ]
+    },
+    {
+        "name": "Sushiro",
+        "profileImg": "images/constantine/Sushiro pp.JPG",
+        "phone": "0673999392",
+        "menuImages": [
+            "images/constantine/Sushiro m1.PNG",
+            "images/constantine/Sushiro m2.PNG",
+            "images/constantine/Sushiro m3.PNG"
+        ]
     }
 ]
